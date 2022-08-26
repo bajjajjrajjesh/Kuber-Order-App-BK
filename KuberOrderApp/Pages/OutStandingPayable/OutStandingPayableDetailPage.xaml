@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resource="clr-namespace:KuberOrderApp.Resources"
+    xmlns:customControl="clr-namespace:KuberOrderApp.CustomControls"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    Title="{x:Static resource:TextString.SingleUsergPayable}"
+    x:Class="KuberOrderApp.Pages.OutStandingPayable.OutStandingPayableDetailPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding PrintPDFCommand}"
+            Order="Secondary"
+            Text="Print PDF" />
+        <ToolbarItem
+            Command="{Binding ShareCommand}"
+            Order="Secondary"
+            Text="Share" />
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+
+        <Grid
+            Padding="20,0,20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="2*" />
+                <ColumnDefinition
+                    Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="Auto" />
+               
+            </Grid.RowDefinitions>
+            <!--<StackLayout
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal"
+                HorizontalOptions="CenterAndExpand">
+                <StackLayout>
+                    <Label
+                        Text="{x:Static resource:TextString.From}"
+                        FontAttributes="Bold"
+                        HorizontalOptions="CenterAndExpand"
+                        Margin="0,5,0,0"
+                        Style="{DynamicResource CommonLabel}"
+                        TextColor="White" />
+                    <Frame
+                        Padding="10"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="White"
+                        Style="{DynamicResource BlueBorderFrame}">
+                        <StackLayout>
+                            <customControl:BorderlessDatePicker
+                                HorizontalOptions="CenterAndExpand"
+                                Date="{Binding FromDate}"
+                                Format="dd/MM/yyyy"
+                                Unfocused="BorderlessDatePicker_Unfocused"
+                                Style="{DynamicResource CommonDatePicker}" />
+                        </StackLayout>
+                    </Frame>
+
+                </StackLayout>
+                <StackLayout>
+                    <Label
+                        Text="{x:Static resource:TextString.To}"
+                        FontAttributes="Bold"
+                        HorizontalOptions="CenterAndExpand"
+                        Margin="0,5,0,0"
+                        Style="{DynamicResource CommonLabel}"
+                        TextColor="White" />
+                    <Frame
+                        Padding="10"
+                        HorizontalOptions="FillAndExpand"
+                         BackgroundColor="White"
+                        Style="{DynamicResource BlueBorderFrame}">
+                        <StackLayout>
+                            <customControl:BorderlessDatePicker
+                                HorizontalOptions="CenterAndExpand"
+                                Date="{Binding ToDate}"
+                                Format="dd/MM/yyyy"
+                                Unfocused="BorderlessDatePicker_Unfocused"
+                                Style="{DynamicResource CommonDatePicker}" />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>-->
+           
+
+        </Grid>
+        <StackLayout
+            Padding="0,0,0,0"
+            BackgroundColor="White"
+            VerticalOptions="FillAndExpand">
+            <syncfusion:SfDataGrid
+                x:Name="XmlDataGrid"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                AutoGenerateColumns="True"
+                SelectionMode="Single"
+                IsBusy="{Binding IsBusy, Mode=TwoWay}"
+                LoadMoreCommand="{Binding LoadMoreCommand, Mode=TwoWay}"
+                AllowLoadMore="True"
+                
+                LoadMoreText="{x:Static resource:TextString.LoadMoreData}"
+                ItemsSource="{Binding DataTableCollection,Mode=TwoWay}"
+                GridTapped="TappedXmlGrid">
+            </syncfusion:SfDataGrid>
+
+            <StackLayout>
+        </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

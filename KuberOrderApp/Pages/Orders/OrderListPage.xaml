@@ -1,0 +1,562 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resource="clr-namespace:KuberOrderApp.Resources"
+    xmlns:customControl="clr-namespace:KuberOrderApp.CustomControls"
+    xmlns:commonView="clr-namespace:KuberOrderApp.CommonViews" xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    Title="{x:Static resource:TextString.AddOrder}"
+    x:Class="KuberOrderApp.Pages.Orders.OrderListPage">
+
+    <StackLayout
+        Padding="20,0,20,10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--SearchBar-->
+            <Grid
+                Margin="0,10,0,0"
+                VerticalOptions="Start">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Frame
+                     BackgroundColor="White"
+                    VerticalOptions="StartAndExpand"
+                    Style="{DynamicResource BlueBorderFrame}">
+                    <StackLayout
+                        Orientation="Horizontal">
+                        <Entry
+                            Style="{DynamicResource CommonEntry}"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Start"
+                            Placeholder="{x:Static resource:TextString.SearchRecord}"
+                            Text="{Binding SearchRecord}"
+                            TextChanged="Entry_Product_TextChanged" />
+                        <Image
+                            HeightRequest="20"
+                            WidthRequest="20"
+                            Margin="0,0,5,0"
+                            Source="{x:Static resource:ImageStrings.icSearch}"
+                            HorizontalOptions="End"
+                            VerticalOptions="CenterAndExpand">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding SearchCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                </Frame>
+                <Grid
+                    Grid.Column="1"
+                    VerticalOptions="Center">
+                    <Image
+                        HeightRequest="30"
+                        WidthRequest="30"
+                        VerticalOptions="CenterAndExpand"
+                        Aspect="AspectFit"
+                        Source="{x:Static resource:ImageStrings.icCart}" />
+                    <Frame
+                        HeightRequest="20"
+                        WidthRequest="20"
+                        CornerRadius="10"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        Margin="10,-15,0,0"
+                        HasShadow="False"
+                        Padding="0"
+                        BackgroundColor="Red">
+                        <Label
+                            Text="{Binding CartCount}"
+                            TextColor="White"
+                            FontSize="10"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            FontAttributes="Bold" />
+                    </Frame>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding CartCommand}" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+            </Grid>
+
+            <!--Filter Pickers-->
+            <Grid
+                Grid.Row="1"
+                VerticalOptions="StartAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="2*" />
+                    <ColumnDefinition
+                        Width="2*" />
+                    <ColumnDefinition
+                        Width="2*" />
+                    <ColumnDefinition
+                        Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Frame
+                    BackgroundColor="White"
+                    Style="{DynamicResource BlueBorderFrame}">
+                    <StackLayout
+                        Spacing="0">
+                        <Entry
+                            Focused="Entry_Focused"
+                            StyleId="Group"
+                            Style="{DynamicResource CommonEntry}"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            FontSize="Small"
+                            Placeholder="{x:Static resource:TextString.Group}"
+                            Text="{Binding SelectedGroupList, Mode=TwoWay}"
+                            TextColor="Black"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding SelectionCommand}"
+                                CommandParameter="Group" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SelectionCommand}"
+                            CommandParameter="Group" />
+                    </Frame.GestureRecognizers>
+                    <Frame.Padding>
+                        <OnPlatform
+                            x:TypeArguments="Thickness">
+                            <On
+                                Platform="iOS"
+                                Value="0,12,0,12" />
+                            <On
+                                Platform="Android"
+                                Value="0" />
+                        </OnPlatform>
+                    </Frame.Padding>
+                </Frame>
+                <Frame
+                    Grid.Column="1"
+                     BackgroundColor="White"
+                    Style="{DynamicResource BlueBorderFrame}">
+                    <StackLayout>
+                        <Entry
+                            Focused="Entry_Focused"
+                            StyleId="Category"
+                            Style="{DynamicResource CommonEntry}"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            FontSize="Small"
+                            Placeholder="{x:Static resource:TextString.Category}"
+                            Text="{Binding SelectedCategoryList}"
+                            TextColor="Black"/>
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SelectionCommand}"
+                            CommandParameter="Category" />
+                    </Frame.GestureRecognizers>
+                    <Frame.Padding>
+                        <OnPlatform
+                            x:TypeArguments="Thickness">
+                            <On
+                                Platform="iOS"
+                                Value="0,12,0,12" />
+                            <On
+                                Platform="Android"
+                                Value="0" />
+                        </OnPlatform>
+                    </Frame.Padding>
+                </Frame>
+                <Frame
+                    Grid.Column="2"
+                     BackgroundColor="White"
+                    Style="{DynamicResource BlueBorderFrame}">
+                    <StackLayout>
+                        <Entry
+                            Focused="Entry_Focused"
+                            StyleId="Type"
+                            Style="{DynamicResource CommonEntry}"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            FontSize="Small"
+                            Placeholder="{x:Static resource:TextString.Type}"
+                            Text="{Binding SelectedTypeList}"
+                            TextColor="Black"/>
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SelectionCommand}"
+                            CommandParameter="Type" />
+                    </Frame.GestureRecognizers>
+                    <Frame.Padding>
+                        <OnPlatform
+                            x:TypeArguments="Thickness">
+                            <On
+                                Platform="iOS"
+                                Value="0,12,0,12" />
+                            <On
+                                Platform="Android"
+                                Value="0" />
+                        </OnPlatform>
+                    </Frame.Padding>
+                </Frame>
+                <Frame
+                    Grid.Column="3"
+                     BackgroundColor="White"
+                    Style="{DynamicResource BlueBorderFrame}">
+                    <StackLayout>
+                        <Entry
+                            Focused="Entry_Focused"
+                            StyleId="Master"
+                            Style="{DynamicResource CommonEntry}"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            FontSize="Small"
+                            Placeholder="{x:Static resource:TextString.Master}"
+                            Text="{Binding SelectedMasterList}"
+                            TextColor="Black"/>
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SelectionCommand}"
+                            CommandParameter="Master" />
+                    </Frame.GestureRecognizers>
+                    <Frame.Padding>
+                        <OnPlatform
+                            x:TypeArguments="Thickness">
+                            <On
+                                Platform="iOS"
+                                Value="0,12,0,12" />
+                            <On
+                                Platform="Android"
+                                Value="0" />
+                        </OnPlatform>
+                    </Frame.Padding>
+                </Frame>
+            </Grid>
+
+            <!--Party Name Selection-->
+            <Frame
+                Grid.Row="2"
+                 BackgroundColor="White"
+                Style="{DynamicResource BlueBorderFrame}">
+                <StackLayout
+                    Orientation="Horizontal">
+                    <Entry
+                        Focused="Party_Entry_Focused"
+                        Style="{DynamicResource CommonEntry}"
+                        HorizontalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Start"
+                        Placeholder="{x:Static resource:TextString.AccountName}"
+                        Text="{Binding AccountName}"
+                        TextColor="Black"/>
+                    <Image
+                        HeightRequest="20"
+                        WidthRequest="20"
+                        Margin="0,0,5,0"
+                        Source="{x:Static resource:ImageStrings.icRightArrow}"
+                        HorizontalOptions="End"
+                        VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding SelectionAccountCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <commonView:UnderLineView
+                Grid.Row="3"
+                Padding="20,0"
+                Margin="0,10,0,0"
+                HorizontalOptions="FillAndExpand" />
+
+            <!--Product List Design-->
+            <StackLayout
+                Grid.Row="4">
+                <sync:SfListView
+                     x:Name="addorderlist" 
+                    Margin="0,20,0,0"
+                    BackgroundColor="Transparent"
+                     LoadMoreOption="AutoOnScroll"
+                     ItemSize="200"
+                    AutoFitMode="Height"
+                             LoadMoreCommand="{Binding LoadMoreCommandAuto}"
+                             LoadMoreCommandParameter="{Binding Source={x:Reference Name=addorderlist}}"
+                    ItemsSource="{Binding ProductList, Mode=TwoWay}"
+                    SelectedItem="{Binding SelectedProduct, Mode=TwoWay}"
+                    MinimumHeightRequest="120"
+                    VerticalOptions="StartAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    
+                   >
+                    <sync:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <StackLayout>
+                                        <StackLayout
+                                            Orientation="Horizontal">
+
+                                            <!--Product Image-->
+                                            <Grid
+                                                MinimumWidthRequest="100"
+                                                HeightRequest="100"
+                                                WidthRequest="100"
+                                                BackgroundColor="White">
+                                                <Image
+                                                    Aspect="AspectFit"
+                                                    Source="{x:Static resource:ImageStrings.Logo}" />
+                                                <Image
+                                                    Aspect="AspectFill"
+                                                    Source="{Binding OrderImage, Converter={StaticResource ByteArrayToImageSourceConverter}}"/>
+                                            </Grid>
+                                            <StackLayout
+                                                Padding="0"
+                                                HorizontalOptions="FillAndExpand">
+
+                                                <!--Product Name, and Stock-->
+                                                <StackLayout
+                                                    HorizontalOptions="FillAndExpand"
+                                                    Padding="5,2"
+                                                    BackgroundColor="White"
+                                                    Orientation="Horizontal">
+                                                    <Label
+                                                        Text="{Binding ColName}"
+                                                        FontAttributes="Bold"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        VerticalOptions="CenterAndExpand"
+                                                        TextColor="Black"
+                                                       MaxLines="-1"
+                                                        LineBreakMode="TailTruncation"
+                                                        FontSize="Small"
+                                                        Style="{DynamicResource CommonLabel}" />
+                                                    <Frame
+                                                        IsVisible="{Binding IsStockVisible}"
+                                                        HasShadow="False"
+                                                        MinimumWidthRequest="60"
+                                                        CornerRadius="5"
+                                                        Padding="4"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        VerticalOptions="CenterAndExpand"
+                                                        BackgroundColor="{DynamicResource PageBackgroundColor}">
+                                                        <StackLayout
+                                                            Spacing="1"
+                                                            HorizontalOptions="CenterAndExpand">
+                                                            <Label
+                                                                Text="Stock"
+                                                                FontAttributes="Bold"
+                                                                HorizontalOptions="CenterAndExpand"
+                                                                TextColor="#5C5C5C"
+                                                                FontSize="12"
+                                                                Style="{DynamicResource CommonLabel}" />
+                                                            <Label
+                                                                Text="{Binding ColStock}"
+                                                                FontAttributes="Bold"
+                                                                HorizontalOptions="CenterAndExpand"
+                                                                TextColor="Black"
+                                                                FontSize="12"
+                                                                Style="{DynamicResource CommonLabel}" />
+                                                        </StackLayout>
+                                                    </Frame>
+                                                </StackLayout>
+
+                                                <!--Product Description-->
+                                                <StackLayout
+                                                    BackgroundColor="White"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    Padding="5,2">
+                                                    <Label
+                                                        
+                                                        Text="Product Description here"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        VerticalOptions="CenterAndExpand"
+                                                        TextColor="Black"
+                                                        MaxLines="2"
+                                                        Style="{DynamicResource CommonLabel}" />
+                                                </StackLayout>
+
+                                                <!--Product Quantity-->
+                                                <Grid
+                                                    HeightRequest="40"
+                                                    HorizontalOptions="FillAndExpand">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition
+                                                            Width="1*" />
+                                                        <ColumnDefinition
+                                                            Width="0.8*" />
+                                                        <ColumnDefinition
+                                                            Width="1*" />
+                                                        <ColumnDefinition
+                                                            Width="0.8*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackLayout
+                                                        BackgroundColor="White"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Padding="5,5">
+                                                        <Label
+                                                            Text="Qty"
+                                                            HorizontalOptions="CenterAndExpand"
+                                                            VerticalOptions="CenterAndExpand"
+                                                            TextColor="Black"
+                                                            FontAttributes="Bold"
+                                                            MaxLines="2"
+                                                            Style="{DynamicResource CommonLabel}" />
+                                                    </StackLayout>
+                                                    <StackLayout
+                                                        Grid.Column="1"
+                                                        BackgroundColor="White"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Padding="5,5">
+                                                        <Image
+                                                            Aspect="AspectFit"
+                                                            VerticalOptions="CenterAndExpand"
+                                                            HeightRequest="15"
+                                                            WidthRequest="15"
+                                                            Source="{x:Static resource:ImageStrings.icRemove}">
+                                                        </Image>
+                                                        <StackLayout.GestureRecognizers>
+                                                            <TapGestureRecognizer
+                                                                Tapped="TapGestureRecognizer_Remove_Quantity_Tapped" />
+                                                        </StackLayout.GestureRecognizers>
+                                                    </StackLayout>
+                                                    <StackLayout
+                                                        Grid.Column="2"
+                                                        BackgroundColor="White"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        VerticalOptions="FillAndExpand"
+                                                        Padding="0"
+                                                        Spacing="0">
+                                                        <Entry
+                                                            Style="{DynamicResource CommonEntry}"
+                                                            HorizontalTextAlignment="Center"
+                                                            VerticalTextAlignment="Center"
+                                                            FontAttributes="Bold"
+                                                            HeightRequest="40"
+                                                            FontSize="Small"
+                                                            Text="{Binding ColOrderedQty}"
+                                                            Keyboard="Numeric"
+                                                            Unfocused="Entry_Quantity_Unfocused" />
+                                                    </StackLayout>
+                                                    <StackLayout
+                                                        Grid.Column="3"
+                                                        BackgroundColor="White"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Padding="5,5">
+                                                        <Image
+                                                            Aspect="AspectFit"
+                                                            VerticalOptions="CenterAndExpand"
+                                                            HeightRequest="15"
+                                                            WidthRequest="15"
+                                                            Source="{x:Static resource:ImageStrings.icAdd}">
+                                                        </Image>
+                                                        <StackLayout.GestureRecognizers>
+                                                            <TapGestureRecognizer
+                                                                Tapped="TapGestureRecognizer_Add_Quantity_Tapped" />
+                                                        </StackLayout.GestureRecognizers>
+                                                    </StackLayout>
+                                                </Grid>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition
+                                                    Width="1*" />
+                                                <ColumnDefinition
+                                                    Width="1.5*" />
+                                                <ColumnDefinition
+                                                    Width="1.8*" />
+                                                <ColumnDefinition
+                                                    Width="1.8*" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout
+                                                BackgroundColor="White"
+                                                HorizontalOptions="FillAndExpand"
+                                                Padding="5,5">
+                                                <Label
+                                                    Text="Rate"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    TextColor="Black"
+                                                    FontAttributes="Bold"
+                                                    MaxLines="2"
+                                                    Style="{DynamicResource CommonLabel}" />
+                                            </StackLayout>
+                                            <StackLayout
+                                                Grid.Column="1"
+                                                BackgroundColor="White"
+                                                HorizontalOptions="FillAndExpand"
+                                                Padding="5,5">
+                                                <Label
+                                                    Text="{Binding ColSaleRate,StringFormat='{0:F2}'}"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    TextColor="Black"
+                                                    FontAttributes="Bold"
+                                                    MaxLines="2"
+                                                    Style="{DynamicResource CommonLabel}" />
+                                            </StackLayout>
+                                            <StackLayout
+                                                Grid.Column="2"
+                                                BackgroundColor="White"
+                                                HorizontalOptions="FillAndExpand"
+                                                Padding="5,5">
+                                                <Label
+                                                    Text="Total Amount"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    TextColor="Black"
+                                                    FontAttributes="Bold"
+                                                    MaxLines="2"
+                                                    Style="{DynamicResource CommonLabel}" />
+                                            </StackLayout>
+                                            <StackLayout
+                                                Grid.Column="3"
+                                                BackgroundColor="White"
+                                                HorizontalOptions="FillAndExpand"
+                                                Padding="5,5">
+                                                <Label
+                                                    Text="{Binding ColMRP,StringFormat='{0:F2}'}"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    TextColor="Black"
+                                                    FontAttributes="Bold"
+                                                    MaxLines="2"
+                                                    Style="{DynamicResource CommonLabel}" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </StackLayout>
+                                    <commonView:UnderLineView
+                                        Padding="-5,0,0,0"
+                                        Margin="5,0,0,8"
+                                        HorizontalOptions="FillAndExpand" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </sync:SfListView.ItemTemplate>
+                </sync:SfListView>
+            </StackLayout>
+
+
+        </Grid>
+        <Button
+            Margin="0,5,0,5"
+            Style="{StaticResource RedButton}"
+            Text="{x:Static resource:TextString.PlaceOrder}"
+            VerticalOptions="EndAndExpand"
+            Command="{Binding PlaceOrderCommand}" />
+    </StackLayout>
+</ContentPage>

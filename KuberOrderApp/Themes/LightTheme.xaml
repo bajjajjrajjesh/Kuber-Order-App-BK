@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns ="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resource="clr-namespace:KuberOrderApp.Resources"
+    x:Class="KuberOrderApp.Themes.LightTheme">
+   <Color
+        x:Key="PageBackgroundColor">#E29153</Color>
+    <Color
+        x:Key="TextFieldTextColor">#BBBBBB</Color>
+    <Color
+        x:Key="TextFieldBackgroundColor">#E5E5E5</Color>
+    <Color
+        x:Key="GrayTextColor">#5C5C5C</Color>
+    <Color
+        x:Key="UnderLineBackground">White</Color>
+    <Color
+        x:Key="BlackTextColor">Black</Color>
+    <Color
+        x:Key="RedButtonColor">#D4443F</Color>
+    <Color
+        x:Key="NavigationBackgroundColor">#FFFFFF</Color>
+    <Color
+        x:Key="WhiteTextColor">White</Color>
+
+    <Style
+        TargetType="NavigationPage">
+        <Setter
+            Property="BarBackgroundColor"
+            Value="{DynamicResource NavigationBackgroundColor}" />
+        <Setter
+            Property="BarTextColor"
+            Value="{StaticResource GrayTextColor}" />
+        
+    </Style>
+    <Style
+        x:Key="LogoImage"
+        TargetType="Image">
+        <Setter
+            Property="HeightRequest"
+            Value="200" />
+        <Setter
+            Property="WidthRequest"
+            Value="200" />
+         <Setter
+            Property="Source"
+            Value="{x:Static resource:ImageStrings.Logo}" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="Center" />
+        <Setter
+            Property="VerticalOptions"
+            Value="Center" />
+    </Style>
+    <Style
+        x:Key="BlueBorderFrame"
+        TargetType="Frame">
+        <Setter
+            Property="HorizontalOptions"
+            Value="FillAndExpand" />
+         <Setter
+            Property="VerticalOptions"
+            Value="FillAndExpand" />
+        <Setter
+            Property="HasShadow"
+            Value="False" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource WhiteTextColor}" />
+        <Setter
+            Property="CornerRadius"
+            Value="22" />
+         <Setter
+            Property="BorderColor"
+            Value="Transparent" />
+        <Setter
+            Property="Padding">
+            <Setter.Value>
+            <OnPlatform
+                x:TypeArguments="Thickness">
+                <On
+                    Platform="iOS"
+                    Value="10,10,10,10" />
+                <On
+                    Platform="Android"
+                    Value="10,2,2,2" />
+            </OnPlatform>
+        </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="CommonDashboardFrame"
+        TargetType="Frame">
+        <Setter
+            Property="HorizontalOptions"
+            Value="FillAndExpand" />
+         <Setter
+            Property="VerticalOptions"
+            Value="FillAndExpand" />
+        <Setter
+            Property="HasShadow"
+            Value="False" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource PageBackgroundColor}" />
+        <Setter
+            Property="CornerRadius"
+            Value="22" />
+         <Setter
+            Property="BorderColor"
+            Value="Transparent" />
+        <Setter
+            Property="Padding">
+            <Setter.Value>
+            <OnPlatform
+                x:TypeArguments="Thickness">
+                <On
+                    Platform="iOS"
+                    Value="10,10,10,10" />
+                <On
+                    Platform="Android"
+                    Value="10,2,2,2" />
+            </OnPlatform>
+        </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style
+        x:Key="CommonDashboardIconFrame"
+        TargetType="Frame">
+        <Setter
+            Property="HasShadow"
+            Value="False" />
+        <Setter
+            Property="BackgroundColor"
+            Value="#F7D9C1" />
+        <Setter
+            Property="CornerRadius"
+            Value="26" />
+        <Setter
+            Property="HeightRequest"
+            Value="50" />
+        <Setter
+            Property="WidthRequest"
+            Value="50" />
+         <Setter
+            Property="Margin"
+            Value="-12,-3,0,-3" />
+        <Setter
+            Property="Padding">
+            <Setter.Value>
+            <OnPlatform
+                x:TypeArguments="Thickness">
+                <On
+                    Platform="iOS"
+                    Value="5" />
+                <On
+                    Platform="Android"
+                    Value="5" />
+            </OnPlatform>
+        </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style
+        x:Key="CommonEntry"
+        TargetType="Entry">
+        <Setter
+            Property="FontSize"
+            Value="18" />
+        <Setter
+            Property="VerticalOptions"
+            Value="CenterAndExpand" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="FillAndExpand" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource GrayTextColor}" />
+        <Setter
+            Property="HorizontalTextAlignment"
+            Value="Center" />
+        <Setter
+            Property="PlaceholderColor"
+            Value="{StaticResource GrayTextColor}" />
+    </Style>
+    <Style
+        x:Key="HorizontalUnderLine"
+        TargetType="BoxView">
+        <Setter
+            Property="HeightRequest"
+            Value="1" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="FillAndExpand" />
+         <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource UnderLineBackground}" />
+    </Style>
+    <Style
+        x:Key="RedButton"
+        TargetType="Button">
+        <Setter
+            Property="Padding"
+            Value="5" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="FillAndExpand" />
+         <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource RedButtonColor}" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource WhiteTextColor}" />
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+        <Setter
+            Property="CornerRadius"
+            Value="10" />
+         <Setter
+            Property="FontSize"
+            Value="Large" />
+        <Setter
+            Property="HeightRequest"
+            Value="45" />
+        <Setter
+            Property="Padding">
+            <Setter.Value>
+            <OnPlatform
+                x:TypeArguments="Thickness">
+                <On
+                    Platform="iOS"
+                    Value="10" />
+                <On
+                    Platform="Android"
+                    Value="0" />
+            </OnPlatform>
+        </Setter.Value>
+        </Setter>
+    </Style>
+    <Style
+        x:Key="CommonLabel"
+        TargetType="Label">
+        <Setter
+            Property="HorizontalOptions"
+            Value="FillAndExpand" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource WhiteTextColor}" />
+         <Setter
+            Property="FontSize"
+            Value="Small" />
+    </Style>
+    <Style
+        x:Key="CommonDatePicker"
+        TargetType="DatePicker">
+        <Setter
+            Property="HorizontalOptions"
+            Value="FillAndExpand" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource GrayTextColor}" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource TextFieldBackgroundColor}" />
+         <Setter
+            Property="FontSize"
+            Value="20" />
+        <Setter
+            Property="BackgroundColor"
+            Value="Transparent" />
+        <Setter
+            Property="BackgroundColor"
+            Value="Transparent" />
+    </Style>
+    <Style
+        x:Key="CommonPicker"
+        TargetType="DatePicker">
+        <Setter
+            Property="HorizontalOptions"
+            Value="FillAndExpand" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource GrayTextColor}" />
+        <Setter
+            Property="FontSize"
+            Value="20" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource TextFieldBackgroundColor}" />
+        <Setter
+            Property="BackgroundColor"
+            Value="Transparent" />
+    </Style>
+    <Style
+        x:Key="CommonEditor"
+        TargetType="Editor">
+        <Setter
+            Property="FontSize"
+            Value="20" />
+        <Setter
+            Property="VerticalOptions"
+            Value="CenterAndExpand" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="CenterAndExpand" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource GrayTextColor}" />
+        <Setter
+            Property="PlaceholderColor"
+            Value="{StaticResource GrayTextColor}" />
+        <Setter
+            Property="BackgroundColor"
+            Value="Transparent" />
+    </Style>
+    <Style
+        x:Key="ShapePath"
+        TargetType="Path">
+        <Setter
+            Property="Stroke"
+            Value="Transparent" />
+        <Setter
+            Property="StrokeThickness"
+            Value="0" />
+        <Setter
+            Property="Fill"
+            Value="#FFFFFF" />
+        <Setter
+            Property="Aspect"
+            Value="Fill" />
+    </Style>
+    <Style
+        x:Key="SecondShapePath"
+        TargetType="Path">
+        <Setter
+            Property="Stroke"
+            Value="Transparent" />
+        <Setter
+            Property="StrokeThickness"
+            Value="0" />
+        <Setter
+            Property="Fill"
+            Value="#FFFFFF" />
+        <Setter
+            Property="Aspect"
+            Value="Uniform" />
+    </Style>
+    <Style
+        x:Key="IconImage"
+        TargetType="Image">
+        <Setter
+            Property="HeightRequest"
+            Value="25" />
+        <Setter
+            Property="WidthRequest"
+            Value="25" />
+    </Style>
+</ResourceDictionary>

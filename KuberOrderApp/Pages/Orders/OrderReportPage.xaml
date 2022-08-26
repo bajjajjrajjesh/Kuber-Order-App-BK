@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resource="clr-namespace:KuberOrderApp.Resources"
+    xmlns:customControl="clr-namespace:KuberOrderApp.CustomControls"
+    xmlns:customView="clr-namespace:KuberOrderApp.CommonViews"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    Title="{x:Static resource:TextString.OrderReport}"
+    x:Class="KuberOrderApp.Pages.Orders.OrderReportPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding PrintPDFCommand}"
+            Order="Secondary"
+            Text="Print PDF" />
+        <ToolbarItem
+            Command="{Binding ShareCommand}"
+            Order="Secondary"
+            Text="Share" />
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+
+        <Grid
+            Padding="20,0,20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="2*" />
+                <ColumnDefinition
+                    Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+            </Grid.RowDefinitions>
+            <Frame
+                Grid.ColumnSpan="2"
+                Margin="20,20,20,0"
+                Style="{DynamicResource BlueBorderFrame}">
+                <StackLayout
+                    Orientation="Horizontal">
+                    <Entry
+                        Style="{DynamicResource CommonEntry}"
+                        HorizontalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Start"
+                        Placeholder="{x:Static resource:TextString.SearchRecord}"
+                        Text="{Binding SearchRecord}"
+                        TextChanged="Entry_TextChanged" />
+                    <Image
+                        HeightRequest="20"
+                        WidthRequest="20"
+                        Margin="0,0,5,0"
+                        Source="{x:Static resource:ImageStrings.icSearch}"
+                        HorizontalOptions="End"
+                        VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding SearchCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+            </Frame>
+            <Grid
+                Margin="0,20,0,0"
+                HorizontalOptions="FillAndExpand"
+                Grid.ColumnSpan="2"
+                Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="2*" />
+                    <ColumnDefinition
+                        Width="2*" />
+                    <ColumnDefinition
+                        Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Frame
+                    Padding="10,5"
+                    BackgroundColor="White"
+                    Style="{DynamicResource BlueBorderFrame}">
+                    <Label
+                        Text="Pending"
+                        FontAttributes="Bold"
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Center"
+                        VerticalOptions="Center"
+                        Style="{DynamicResource CommonLabel}"
+                        FontSize="Medium"
+                        TextColor="Black">
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding IsPending}"
+                                Value="True">
+                                <Setter
+                                    Property="TextColor"
+                                    Value="White" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Frame.Triggers>
+                        <DataTrigger
+                            TargetType="Frame"
+                            Binding="{Binding IsPending}"
+                            Value="True">
+                            <Setter
+                                Property="BackgroundColor"
+                                Value="{StaticResource RedButtonColor}" />
+                        </DataTrigger>
+                    </Frame.Triggers>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SelectedFilterCommand}"
+                            CommandParameter="Pending" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame
+                    Grid.Column="1"
+                    Padding="10,5"
+                    BackgroundColor="White"
+                    Style="{DynamicResource BlueBorderFrame}">
+                    <Label
+                        Text="All"
+                        FontAttributes="Bold"
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Center"
+                        VerticalOptions="Center"
+                        Style="{DynamicResource CommonLabel}"
+                        FontSize="Medium"
+                        TextColor="Black">
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding IsAll}"
+                                Value="True">
+                                <Setter
+                                    Property="TextColor"
+                                    Value="White" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Frame.Triggers>
+                        <DataTrigger
+                            TargetType="Frame"
+                            Binding="{Binding IsAll}"
+                            Value="True">
+                            <Setter
+                                Property="BackgroundColor"
+                                Value="{StaticResource RedButtonColor}" />
+                        </DataTrigger>
+                    </Frame.Triggers>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SelectedFilterCommand}"
+                            CommandParameter="All" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame
+                    Grid.Column="2"
+                    Padding="10,5"
+                    BackgroundColor="White"
+                    Style="{DynamicResource BlueBorderFrame}">
+                    <Label
+                        Text="Complete"
+                        FontAttributes="Bold"
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Center"
+                        VerticalOptions="Center"
+                        Style="{DynamicResource CommonLabel}"
+                        FontSize="Medium"
+                        TextColor="Black">
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding IsComplete}"
+                                Value="True">
+                                <Setter
+                                    Property="TextColor"
+                                    Value="White" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Frame.Triggers>
+                        <DataTrigger
+                            TargetType="Frame"
+                            Binding="{Binding IsComplete}"
+                            Value="True">
+                            <Setter
+                                Property="BackgroundColor"
+                                Value="{StaticResource RedButtonColor}" />
+                        </DataTrigger>
+                    </Frame.Triggers>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SelectedFilterCommand}"
+                            CommandParameter="Complete" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </Grid>
+        </Grid>
+        <StackLayout
+            VerticalOptions="FillAndExpand">
+            <syncfusion:SfDataGrid
+                x:Name="XmlDataGrid"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                AutoGenerateColumns="True"
+                IsBusy="{Binding IsBusy, Mode=TwoWay}"
+                LoadMoreCommand="{Binding LoadMoreCommand, Mode=TwoWay}"
+                AllowLoadMore="True"
+                AllowSwiping="True"
+                LoadMoreText="{x:Static resource:TextString.LoadMoreData}"
+                ItemsSource="{Binding DataTableCollection,Mode=TwoWay}"
+                AllowResizingColumn="True"
+                ColumnSizer="Auto"
+                GridTapped="TappedXmlGrid">
+            </syncfusion:SfDataGrid>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

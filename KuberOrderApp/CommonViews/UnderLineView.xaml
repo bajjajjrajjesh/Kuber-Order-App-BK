@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Padding="40,0"
+    ColumnSpacing="0"
+    HorizontalOptions="CenterAndExpand"
+    x:Class="KuberOrderApp.CommonViews.UnderLineView">
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition
+            Width="Auto" />
+        <ColumnDefinition
+            Width="*" />
+        <ColumnDefinition
+            Width="Auto" />
+    </Grid.ColumnDefinitions>
+    <Path
+        Style="{DynamicResource SecondShapePath}"
+        HeightRequest="10"
+        WidthRequest="10"
+        HorizontalOptions="Center"
+        Data="m270.64503,221.60502l50.50001,-42.5l50.50001,42.5l-50.50001,42.5l-50.50001,-42.5z">
+    </Path>
+    <BoxView
+        Grid.Column="1"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="Center"
+        Style="{DynamicResource HorizontalUnderLine}" />
+    <Path
+        Grid.Column="2"
+        Style="{DynamicResource SecondShapePath}"
+        HorizontalOptions="Center"
+        HeightRequest="10"
+        WidthRequest="10"
+        Data="m270.64503,221.60502l50.50001,-42.5l50.50001,42.5l-50.50001,42.5l-50.50001,-42.5z">
+    </Path>
+
+</Grid>

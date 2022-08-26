@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns ="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customControl="clr-namespace:KuberOrderApp.CustomControls"
+    xmlns:resource="clr-namespace:KuberOrderApp.Resources"
+    Title="{x:Static resource:TextString.CompanyList}"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    x:Class="KuberOrderApp.Pages.Company.CompanyListPage">
+ 
+         <Grid
+            VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="0.4*" />
+                <RowDefinition
+                    Height="0.4*" />
+                <RowDefinition
+                    Height="*" />
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.RowSpan="2">
+                <Path
+                    Style="{DynamicResource ShapePath}"
+                    Data="M256.574-525.893C175.209-527.392,52-547,52-547H466.082s-120.049,21.179-201.535,21.179Q260.493-525.821,256.574-525.893ZM52-547V-899H466v352Z">
+                </Path>
+                <Image
+                    Style="{DynamicResource LogoImage}"/>
+            </Grid>
+            <StackLayout
+                Margin="0,-40,0,0"
+                Padding="20,10"
+                VerticalOptions="CenterAndExpand"
+                Grid.Row="2">
+                <Label
+                    Text="{x:Static resource:TextString.SelectCompany}"
+                    FontAttributes="Bold"
+                    HorizontalOptions="StartAndExpand"
+                    Margin="0,20,0,0"
+                    Style="{DynamicResource CommonLabel}"
+                    TextColor="White"/>
+
+             <!--   <ListView ItemsSource="{Binding CompanyLists}">
+                    
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Text="{Binding CompanyLists}"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>-->
+                <Frame
+                    Padding="10"
+                    Style="{DynamicResource BlueBorderFrame}">
+                    <StackLayout>
+                        <ListView HorizontalOptions="FillAndExpand" SeparatorVisibility="Default" SeparatorColor="Gray"  HasUnevenRows="True"  SelectedItem="{Binding SelectedCompany,Mode=TwoWay}" SelectionMode="Single"  HeightRequest="250" MinimumHeightRequest="100" VerticalOptions="FillAndExpand" ItemsSource="{Binding CompanyLists}">
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell   Tapped="ViewCell_Tapped">
+                                       
+                                               <Label Margin="0" Padding="5,5,5,5" TextColor="Black" Text="{Binding ColCompYearList}"/>
+                                    
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView> 
+                        <!-- <customControl:BorderlessPicker
+                            ItemsSource="{Binding CompanyLists}"
+                            ItemDisplayBinding="{Binding ColCompYearList}"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                          
+                            SelectedItem="{Binding SelectedCompany,Mode=TwoWay}"
+                            Style="{DynamicResource CommonPicker}"
+                            Title="{x:Static resource:TextString.SelectCompany}"/> -->
+                    </StackLayout>
+                </Frame>
+
+                <Grid
+                    VerticalOptions="EndAndExpand"
+                    ColumnSpacing="5"
+                    Padding="20,5">
+                    <Button
+                     
+                        Style="{StaticResource RedButton}"
+                        Text="{x:Static resource:TextString.Login}"
+                        Command="{Binding LogInCommand}"/>
+                </Grid>
+            </StackLayout>
+        </Grid>
+
+</ContentPage>

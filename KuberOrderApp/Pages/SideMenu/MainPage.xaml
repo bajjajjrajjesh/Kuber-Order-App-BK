@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<FlyoutPage
+    xmlns ="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:sidemenu="clr-namespace:KuberOrderApp.Pages.SideMenu"
+    xmlns:local="clr-namespace:KuberOrderApp.Pages.Home"
+    NavigationPage.HasNavigationBar="False"
+    
+    x:Class="KuberOrderApp.Pages.SideMenu.MainPage">
+    
+</FlyoutPage>

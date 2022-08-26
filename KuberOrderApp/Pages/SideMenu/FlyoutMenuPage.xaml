@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:KuberOrderApp.Pages.Base"
+    xmlns:resource="clr-namespace:KuberOrderApp.Resources"
+    xmlns:behaviors="clr-namespace:KuberOrderApp.Behaviors"
+    Title="Menu"
+    
+    NavigationPage.BackButtonTitle=""
+    IconImageSource="ic_menu_white.png"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    x:Class="KuberOrderApp.Pages.SideMenu.FlyoutMenuPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="0.3*" />
+            <RowDefinition
+                Height="0.3*" />
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
+        <Grid
+            Grid.RowSpan="2">
+            <Path
+                Style="{DynamicResource ShapePath}"
+                Data="M256.574-525.893C175.209-527.392,52-547,52-547H466.082s-120.049,21.179-201.535,21.179Q260.493-525.821,256.574-525.893ZM52-547V-899H466v352Z">
+            </Path>
+            <Image
+                Style="{DynamicResource LogoImage}" />
+        </Grid>
+        <StackLayout
+            Grid.Row="2">
+            <ListView
+                BackgroundColor="Transparent"
+                ItemsSource="{Binding MenusList}"
+                SelectedItem="{Binding SelectedMenu,Mode=TwoWay}"
+                HasUnevenRows="True"
+                VerticalScrollBarVisibility="Never"
+                SeparatorVisibility="None">
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehaviour
+                        Command="{Binding MenuItemSelectedCommand}"
+                        EventName="ItemSelected" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                BackgroundColor="White"
+                                HasShadow="False"
+                                CornerRadius="5"
+                                Padding="5"
+                                Margin="10">
+                                <StackLayout
+                                    BackgroundColor="White"
+                                    Orientation="Horizontal">
+                                    <Image
+                                        Style="{DynamicResource IconImage}"
+                                        Source="{Binding Icon}" />
+                                    <Label
+                                        Text="{Binding Title}"
+                                        FontAttributes="Bold"
+                                        FontSize="Large"
+                                        HorizontalOptions="StartAndExpand"
+                                        Style="{DynamicResource CommonLabel}"
+                                        TextColor="Black" />
+                                </StackLayout>
+                                <!--<BoxView
+                                    Margin="10,0,-10,0"
+                                    Style="{DynamicResource HorizontalUnderLine}" />-->
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

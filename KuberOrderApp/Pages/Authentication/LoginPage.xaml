@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:KuberOrderApp.Pages.Base"
+    xmlns:resource="clr-namespace:KuberOrderApp.Resources"
+    xmlns:commonView="clr-namespace:KuberOrderApp.CommonViews"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    NavigationPage.HasNavigationBar="False"
+    x:Class="KuberOrderApp.Pages.Authentication.LoginPage">
+
+    <StackLayout
+        Margin="0,-50,0,0"
+        Padding="20,0,20,40"
+        VerticalOptions="FillAndExpand">
+        <ScrollView
+            Margin="-20,0,-20,0"
+            VerticalOptions="FillAndExpand">
+            <Grid
+                VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="0.5*" />
+                    <RowDefinition
+                        Height="0.5*" />
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="*" />
+                </Grid.RowDefinitions>
+                <Grid
+                    Grid.RowSpan="2">
+                    <Path
+                        Style="{DynamicResource ShapePath}"
+                        Data="M256.574-525.893C175.209-527.392,52-547,52-547H466.082s-120.049,21.179-201.535,21.179Q260.493-525.821,256.574-525.893ZM52-547V-899H466v352Z">
+                    </Path>
+                    <Image
+                        Style="{DynamicResource LogoImage}" />
+                </Grid>
+
+                <StackLayout
+                    VerticalOptions="StartAndExpand"
+                    Grid.Row="2"
+                    Margin="0,20,0,0"
+                    HorizontalOptions="FillAndExpand">
+                    <Label
+                        VerticalOptions="Start"
+                        Text="{x:Static resource:TextString.SignInToKuber}"
+                        FontAttributes="Bold"
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{DynamicResource CommonLabel}"
+                        TextColor="White"/>
+                   <commonView:UnderLineView/>
+                    
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="3"
+                    Padding="20,10,20,40">
+                <StackLayout
+                    VerticalOptions="StartAndExpand">
+                    <Frame
+                        Style="{DynamicResource BlueBorderFrame}">
+                        <StackLayout
+                            Orientation="Horizontal">
+                            <Image
+                                Style="{DynamicResource IconImage}"
+                                Source="ic_mobile"/>
+                            <Entry
+                                Margin="10,0,0,0"
+                                Style="{DynamicResource CommonEntry}"
+                                ReturnType="Next"
+                                Keyboard="Telephone"
+                                HorizontalOptions="FillAndExpand"
+                                HorizontalTextAlignment="Start"
+                                Placeholder="{x:Static resource:TextString.MobileNo}"
+                                Text="{Binding MobileNo}" />
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        Margin="0,20,0,0"
+                        Style="{DynamicResource BlueBorderFrame}">
+                        <StackLayout
+                            Orientation="Horizontal">
+                            <Image
+                                Style="{DynamicResource IconImage}"
+                                Source="ic_password"/>
+                            <Entry
+                                Margin="10,0,0,0"
+                                Style="{DynamicResource CommonEntry}"
+                                ReturnType="Done"
+                                IsPassword="True"
+                                 HorizontalOptions="FillAndExpand"
+                                HorizontalTextAlignment="Start"
+                                Placeholder="{x:Static resource:TextString.Password}"
+                                Text="{Binding Password}" />
+                        </StackLayout>
+                    </Frame>
+                    <Label
+                        Text="{x:Static resource:TextString.ForgotPassword}"
+                        FontAttributes="Bold"
+                        HorizontalOptions="EndAndExpand"
+                        Style="{DynamicResource CommonLabel}"
+                        TextColor="White">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding ForgotPasswordCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+        <Button
+            Margin="0,20,0,0"
+            Style="{StaticResource RedButton}"
+            Text="{x:Static resource:TextString.Login}"
+            Command="{Binding LogInCommand}" />
+    </StackLayout>
+</ContentPage>

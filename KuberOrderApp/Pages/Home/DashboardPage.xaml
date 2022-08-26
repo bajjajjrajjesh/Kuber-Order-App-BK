@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="KuberOrderApp.Pages.Home.DashboardPage"
+    xmlns:resource="clr-namespace:KuberOrderApp.Resources"
+    BackgroundColor="White"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+    Title="{x:Static resource:TextString.Dashboard}">
+
+    <StackLayout
+        Padding="10">
+        <Frame
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Start"
+            HasShadow="False"
+            CornerRadius="5"
+            Padding="5"
+            BackgroundColor="#B8A3A3">
+            <Label
+                Style="{DynamicResource CommonLabel}"
+                TextColor="Black"
+                FontAttributes="Bold"
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Text="{Binding SelectedCompany}" />
+        </Frame>
+        <ScrollView>
+            <Grid
+                VerticalOptions="StartAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="2*" />
+                    <RowDefinition
+                        Height="2*" />
+                    <RowDefinition
+                        Height="2*" />
+                    <RowDefinition
+                        Height="2*" />
+                </Grid.RowDefinitions>
+
+                <StackLayout
+                    VerticalOptions="Start"
+                    Spacing="0">
+                    <Frame
+                        Style="{DynamicResource CommonDashboardFrame}"
+                        HeightRequest="50">
+                        <StackLayout
+                            Orientation="Horizontal">
+                            <Frame
+                                Style="{DynamicResource CommonDashboardIconFrame}">
+                                <Image
+                                    HeightRequest="40"
+                                    WidthRequest="40"
+                                    Source="ic_receivable" />
+                            </Frame>
+                            <Label
+                                Style="{DynamicResource CommonLabel}"
+                                TextColor="White"
+                                Margin="-40,0,0,0"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static resource:TextString.Receivable}" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding ReceivableCommand}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <StackLayout
+                        BackgroundColor="Transparent"
+                        VerticalOptions="Start">
+                        <syncfusion:SfDataGrid
+                            x:Name="XmlDataGrid"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            AutoGenerateColumns="True"
+                            AllowResizingColumn="True"
+                            ColumnSizer="Star"
+                            ShowRowHeader="True"
+                            ItemsSource="{Binding DataTableReceivable,Mode=TwoWay}" />
+                        <StackLayout
+                            Orientation="Horizontal"
+                            HorizontalOptions="EndAndExpand">
+                            <Label
+                                Style="{DynamicResource CommonLabel}"
+                                TextColor="Black"
+                                FontAttributes="Bold"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static resource:TextString.Total}" />
+                            <Label
+                                Style="{DynamicResource CommonLabel}"
+                                TextColor="Black"
+                                FontAttributes="Bold"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding ReceivableTotal}" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="1"
+                    Spacing="0"
+                    VerticalOptions="Start">
+                    <Frame
+                        Style="{DynamicResource CommonDashboardFrame}"
+                        HeightRequest="50">
+                        <StackLayout
+                            Orientation="Horizontal">
+                            <Frame
+                                Style="{DynamicResource CommonDashboardIconFrame}">
+                                <Image
+                                    HeightRequest="40"
+                                    WidthRequest="40"
+                                    Source="ic_payable" />
+                            </Frame>
+                            <Label
+                                Style="{DynamicResource CommonLabel}"
+                                TextColor="White"
+                                Margin="-40,0,0,0"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static resource:TextString.Payable}" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding PayableCommand}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <StackLayout
+                        BackgroundColor="Transparent"
+                        VerticalOptions="Start">
+                        <syncfusion:SfDataGrid
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            AutoGenerateColumns="True"
+                            ItemsSource="{Binding DataTablePayable,Mode=TwoWay}" />
+                        <StackLayout
+                            Orientation="Horizontal"
+                            HorizontalOptions="EndAndExpand">
+                            <Label
+                                Style="{DynamicResource CommonLabel}"
+                                TextColor="Black"
+                                FontAttributes="Bold"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static resource:TextString.Total}" />
+                            <Label
+                                Style="{DynamicResource CommonLabel}"
+                                TextColor="Black"
+                                FontAttributes="Bold"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding PayableTotal}" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="2"
+                    Spacing="0"
+                    VerticalOptions="Start">
+                    <Frame
+                        Style="{DynamicResource CommonDashboardFrame}"
+                        HeightRequest="50">
+                        <StackLayout
+                            Orientation="Horizontal">
+                            <Frame
+                                Style="{DynamicResource CommonDashboardIconFrame}">
+                                <Image
+                                    HeightRequest="40"
+                                    WidthRequest="40"
+                                    Source="ic_stock_report" />
+                            </Frame>
+                            <Label
+                                Style="{DynamicResource CommonLabel}"
+                                TextColor="White"
+                                Margin="-40,0,0,0"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static resource:TextString.StockReport}" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding StockCommand}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <StackLayout
+                        BackgroundColor="Transparent"
+                        VerticalOptions="Start">
+                        <syncfusion:SfDataGrid
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            AutoGenerateColumns="True"
+                            AllowResizingColumn="True"
+                            ColumnSizer="Star"
+                            ItemsSource="{Binding DataTableStockReport,Mode=TwoWay}" />
+                        <StackLayout
+                            Orientation="Horizontal"
+                            HorizontalOptions="EndAndExpand">
+                            <Label
+                                Style="{DynamicResource CommonLabel}"
+                                TextColor="Black"
+                                FontAttributes="Bold"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static resource:TextString.Total}" />
+                            <Label
+                                Style="{DynamicResource CommonLabel}"
+                                TextColor="Black"
+                                FontAttributes="Bold"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding StockTotal}" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="3"
+                    Spacing="0"
+                    VerticalOptions="Start">
+                    <Frame
+                        Style="{DynamicResource CommonDashboardFrame}"
+                        HeightRequest="50">
+                        <StackLayout
+                            Orientation="Horizontal">
+                            <Frame
+                                Style="{DynamicResource CommonDashboardIconFrame}">
+                                <Image
+                                    HeightRequest="40"
+                                    WidthRequest="40"
+                                    Source="ic_CashBankReport" />
+                            </Frame>
+                            <Label
+                                Style="{DynamicResource CommonLabel}"
+                                TextColor="White"
+                                Margin="-40,0,0,0"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static resource:TextString.CashBankReport}" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding CashBankCommand}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <StackLayout
+                        BackgroundColor="Transparent"
+                        VerticalOptions="Start">
+                        <syncfusion:SfDataGrid
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            AutoGenerateColumns="True"
+                            AllowResizingColumn="True"
+                            ColumnSizer="Star"
+                            ItemsSource="{Binding DataTableCashBank,Mode=TwoWay}" />
+                        <StackLayout
+                            Orientation="Horizontal"
+                            HorizontalOptions="EndAndExpand">
+                            <Label
+                                Style="{DynamicResource CommonLabel}"
+                                TextColor="Black"
+                                FontAttributes="Bold"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static resource:TextString.Debit}" />
+                            <Label
+                                Style="{DynamicResource CommonLabel}"
+                                TextColor="Black"
+                                FontAttributes="Bold"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding CashBankDebitTotal}" />
+
+                            <Label
+                                Style="{DynamicResource CommonLabel}"
+                                TextColor="Black"
+                                FontAttributes="Bold"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static resource:TextString.Credit}" />
+                            <Label
+                                Style="{DynamicResource CommonLabel}"
+                                TextColor="Black"
+                                FontAttributes="Bold"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding CashBankCreditTotal}" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </StackLayout>
+
+</ContentPage>

@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resource="clr-namespace:KuberOrderApp.Resources"
+    xmlns:customControl="clr-namespace:KuberOrderApp.CustomControls"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    Title="{x:Static resource:TextString.PartyDetails}"
+    x:Class="KuberOrderApp.Pages.AddressBook.AddressDetailPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding PrintPDFCommand}"
+            Order="Secondary"
+            Text="Print PDF" />
+        <ToolbarItem
+            Command="{Binding ShareCommand}"
+            Order="Secondary"
+            Text="Share" />
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <ScrollView
+            VerticalScrollBarVisibility="Never">
+            <StackLayout
+                IsEnabled="False"
+                VerticalOptions="FillAndExpand"
+                Padding="20,20,20,0">
+                <Label
+                    Text="{x:Static resource:TextString.PartyName}"
+                    FontAttributes="Bold"
+                    HorizontalOptions="StartAndExpand"
+                    Margin="0,5,0,0"
+                    Style="{DynamicResource CommonLabel}"
+                    TextColor="White" />
+                <Frame
+                    Style="{DynamicResource BlueBorderFrame}">
+                    <StackLayout>
+                        <Entry
+                            Style="{DynamicResource CommonEntry}"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Start"
+                            Keyboard="Numeric"
+                            Placeholder="{x:Static resource:TextString.PartyName}"
+                            Text="{Binding PartyName}" />
+                    </StackLayout>
+                </Frame>
+                <Grid
+                    Margin="0,20,0,0"
+                    ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="2*" />
+                        <ColumnDefinition
+                            Width="2*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout>
+                        <Label
+                            Text="{x:Static resource:TextString.MobileNumber}"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"
+                            Margin="0,5,0,0"
+                            Style="{DynamicResource CommonLabel}"
+                            TextColor="White" />
+                        <Frame
+                            Style="{DynamicResource BlueBorderFrame}">
+                            <StackLayout>
+                                <Entry
+                                    Style="{DynamicResource CommonEntry}"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="Start"
+                                    Keyboard="Numeric"
+                                    Placeholder="{x:Static resource:TextString.MobileNumber}"
+                                    Text="{Binding MobileNo}" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout
+                        Grid.Column="1">
+                        <Label
+                            Text="{x:Static resource:TextString.PhoneNo}"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"
+                            Margin="0,5,0,0"
+                            Style="{DynamicResource CommonLabel}"
+                            TextColor="White" />
+                        <Frame
+                            Style="{DynamicResource BlueBorderFrame}">
+                            <StackLayout>
+                                <Entry
+                                    Style="{DynamicResource CommonEntry}"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="Start"
+                                    Keyboard="Numeric"
+                                    Placeholder="{x:Static resource:TextString.PhoneNo}"
+                                    Text="{Binding PhoneNo}" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+                <Label
+                    Margin="0,20,0,0"
+                    Text="{x:Static resource:TextString.Address1}"
+                    FontAttributes="Bold"
+                    HorizontalOptions="StartAndExpand"
+                    Style="{DynamicResource CommonLabel}"
+                    TextColor="White" />
+                <Frame
+                    Style="{DynamicResource BlueBorderFrame}">
+                    <StackLayout>
+                        <Entry
+                            Style="{DynamicResource CommonEntry}"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Start"
+                            Keyboard="Numeric"
+                            Placeholder="{x:Static resource:TextString.Address1}"
+                            Text="{Binding Address1}" />
+                    </StackLayout>
+                </Frame>
+                <Label
+                    Margin="0,20,0,0"
+                    Text="{x:Static resource:TextString.Address2}"
+                    FontAttributes="Bold"
+                    HorizontalOptions="StartAndExpand"
+                    Style="{DynamicResource CommonLabel}"
+                    TextColor="White" />
+                <Frame
+                    Style="{DynamicResource BlueBorderFrame}">
+                    <StackLayout>
+                        <Entry
+                            Style="{DynamicResource CommonEntry}"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Start"
+                            Keyboard="Numeric"
+                            Placeholder="{x:Static resource:TextString.Address2}"
+                            Text="{Binding Address2}" />
+                    </StackLayout>
+                </Frame>
+                <Label
+                    Margin="0,20,0,0"
+                    Text="{x:Static resource:TextString.Address3}"
+                    FontAttributes="Bold"
+                    HorizontalOptions="StartAndExpand"
+                    Style="{DynamicResource CommonLabel}"
+                    TextColor="White" />
+                <Frame
+                    Style="{DynamicResource BlueBorderFrame}">
+                    <StackLayout>
+                        <Entry
+                            Style="{DynamicResource CommonEntry}"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Start"
+                            Keyboard="Numeric"
+                            Placeholder="{x:Static resource:TextString.Address3}"
+                            Text="{Binding Address3}" />
+                    </StackLayout>
+                </Frame>
+                <Grid
+                    Margin="0,20,0,0"
+                    ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="2*" />
+                        <ColumnDefinition
+                            Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout>
+                        <Label
+                            Text="{x:Static resource:TextString.City}"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"
+                            Style="{DynamicResource CommonLabel}"
+                            TextColor="White" />
+                        <Frame
+                            Style="{DynamicResource BlueBorderFrame}">
+                            <StackLayout>
+                                <Entry
+                                    Style="{DynamicResource CommonEntry}"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="Start"
+                                    Keyboard="Numeric"
+                                    Placeholder="{x:Static resource:TextString.City}"
+                                    Text="{Binding City}" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout
+                        Grid.Column="1">
+                        <Label
+                            Text="{x:Static resource:TextString.Area}"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"
+                            Style="{DynamicResource CommonLabel}"
+                            TextColor="White" />
+                        <Frame
+                            Style="{DynamicResource BlueBorderFrame}">
+                            <StackLayout>
+                                <Entry
+                                    Style="{DynamicResource CommonEntry}"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="Start"
+                                    Keyboard="Numeric"
+                                    Placeholder="{x:Static resource:TextString.Area}"
+                                    Text="{Binding Area}" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+                <Grid
+                    Margin="0,20,0,0"
+                    ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="2*" />
+                        <ColumnDefinition
+                            Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout>
+                        <Label
+                            Text="{x:Static resource:TextString.State}"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"
+                            Style="{DynamicResource CommonLabel}"
+                            TextColor="White" />
+                        <Frame
+                            Style="{DynamicResource BlueBorderFrame}">
+                            <StackLayout>
+                                <Entry
+                                    Style="{DynamicResource CommonEntry}"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="Start"
+                                    Keyboard="Numeric"
+                                    Placeholder="{x:Static resource:TextString.State}"
+                                    Text="{Binding State}" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout
+                        Grid.Column="1">
+                        <Label
+                            Text="{x:Static resource:TextString.ContactPerson}"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"
+                            Style="{DynamicResource CommonLabel}"
+                            TextColor="White" />
+                        <Frame
+                            Style="{DynamicResource BlueBorderFrame}">
+                            <StackLayout>
+                                <Entry
+                                    Style="{DynamicResource CommonEntry}"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="Start"
+                                    Keyboard="Numeric"
+                                    Placeholder="{x:Static resource:TextString.ContactPerson}"
+                                    Text="{Binding ContactPerson}" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+
+        <!--<Button
+            Margin="20,30"
+            VerticalOptions="EndAndExpand"
+            Style="{StaticResource RedButton}"
+            Text="{x:Static resource:TextString.Print}"
+            Command="{Binding PrintCommand}" />-->
+    </StackLayout>
+</ContentPage>

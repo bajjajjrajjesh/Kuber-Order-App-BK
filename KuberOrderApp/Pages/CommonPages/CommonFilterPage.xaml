@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns ="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resource="clr-namespace:KuberOrderApp.Resources"
+    xmlns:customControl="clr-namespace:KuberOrderApp.CustomControls"
+    xmlns:commonView="clr-namespace:KuberOrderApp.CommonViews"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    Title="{Binding Title}"
+    xmlns:behaviors="clr-namespace:KuberOrderApp.Behaviors"
+    x:Class="KuberOrderApp.Pages.CommonPages.CommonFilterPage">
+   <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
+        <Frame
+            Margin="20,20,20,0"
+            Style="{DynamicResource BlueBorderFrame}">
+            <StackLayout
+                Orientation="Horizontal">
+                <Entry
+                    Style="{DynamicResource CommonEntry}"
+                    HorizontalOptions="FillAndExpand"
+                    HorizontalTextAlignment="Start"
+                    Placeholder="{x:Static resource:TextString.SearchAddress}"
+                    Text="{Binding SearchRecord}"
+                    TextChanged="Entry_TextChanged"/>
+                <Image
+                    HeightRequest="25"
+                    WidthRequest="25"
+                    Source="{x:Static resource:ImageStrings.icSearch}"
+                    HorizontalOptions="End"
+                    VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </Frame>
+
+        <commonView:UnderLineView
+            Grid.Row="1"
+            Padding="20,0"
+            Margin="0,10,0,0"
+            HorizontalOptions="FillAndExpand" />
+
+        <StackLayout
+            Grid.Row="2">
+            <ListView
+                Margin="0,20,0,0"
+                BackgroundColor="Transparent"
+                ItemsSource="{Binding FilterList, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedFilterList, Mode=TwoWay}"
+                SeparatorVisibility="None"
+                VerticalOptions="StartAndExpand"
+                HorizontalOptions="FillAndExpand"
+                HasUnevenRows="True">
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehaviour
+                        Command="{Binding SelectionCommand}"
+                        EventName="ItemSelected" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Grid
+                                    BackgroundColor="White"
+                                    Padding="5">
+                                <Label
+                                        Text="{Binding .}"
+                                        FontAttributes="Bold"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="FillAndExpand"
+                                        Style="{DynamicResource CommonLabel}"
+                                        TextColor="Black" >
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding .}"
+                                            Value=""
+                                            TargetType="Label">
+                                            <Setter Property="IsVisible" Value="False"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </Grid>
+</ContentPage>
